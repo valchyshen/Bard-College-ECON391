@@ -8,6 +8,7 @@ library(ggplot2)
 library(ggpubr)
 library(ggrepel)
 
+# Turnover values (EUR 000s) for 7-year period of 2011-2017
 df <- data.frame(x=c(1:7), 
                  y=c(185500,154703,132503,117564,106395,98171,92322))
 
@@ -15,14 +16,14 @@ df <- data.frame(x=c(1:7),
 # y = b + a*x 
 m1 <- lm(y ~ x, data=df)
 m1$coefficients
-# Forecast of Turnover for x=8
+# Forecast of Turnover for x=8 or year of 2018
 f1 <- m1$coefficients[[1]]+m1$coefficients[[2]]*8
 
 # Polynomial Trend (Degree = 2)
 # y = b + a1*x + a2*x^2
 m2 <- lm(y ~ poly(x, 2, raw=TRUE), data=df)
 m2$coefficients
-# Forecast of Turnover for x=8
+# Forecast of Turnover for x=8 or year of 2018
 f2 <- m2$coefficients[[1]]+m2$coefficients[[2]]*8+m2$coefficients[[3]]*8^2
 
 # Min and max points for Y-axis of the charts to be built next
